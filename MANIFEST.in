@@ -1,4 +1,4 @@
-graft codeclip
+graft proclip
 graft requirements
 include LICENSE
 include README.md

@@ -20,11 +20,11 @@ exclude = "tests"
 asyncio_mode = "auto"
 
 [tool.len8]
-exclude = ["tests", "codeclip/ux.py"]
+exclude = ["tests", "proclip/ux.py"]
 code-length = 88
 
 [tool.coverage.report]
-omit = ["codeclip/__init__.py", "codeclip/ux.py"]
+omit = ["proclip/__init__.py", "proclip/ux.py"]
 exclude_lines = [
     "if t.TYPE_CHECKING:",
     "raise NotImplementedError",

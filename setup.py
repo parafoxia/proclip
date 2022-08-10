@@ -33,7 +33,7 @@ from collections import defaultdict
 
 if sys.version_info < (3, 7, 0):
     print(
-        "codeclip only supports Python versions 3.7.0 or greater.",
+        "Proclip only supports Python versions 3.7.0 or greater.",
         file=sys.stderr,
     )
     sys.exit(1)
@@ -47,7 +47,7 @@ def parse_requirements(path: str) -> list[str]:
         return [d for d in deps if not d.startswith(("#", "-e", "-r"))]
 
 
-with open("./codeclip/__init__.py") as f:
+with open("./proclip/__init__.py") as f:
     attrs = defaultdict(str)
 
     for line in f:
@@ -115,4 +115,5 @@ setuptools.setup(
     python_requires=">=3.7.0,<3.12",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    entry_points={"console_scripts": ["clip = len8.cli:len8"]},
 )
