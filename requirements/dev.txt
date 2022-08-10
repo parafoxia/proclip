@@ -1,0 +1,41 @@
+# Meta
+-e .
+-r ./base.txt
+
+# Sessions
+nox==2022.8.7
+
+# Docs
+furo
+sphinx>=5,<6
+
+# Formatting
+black~=22.6.0
+
+# Imports
+flake8~=5.0.4
+isort~=5.10.1
+
+# Typing
+mypy==0.971
+
+# Line lengths
+len8~=0.7.2
+
+# Spelling
+codespell~=2.1.0
+
+# Tests
+coverage~=6.4.1
+mock~=4.0.3
+pytest~=7.1.0
+requests>=2.27,<3
+
+# Safety
+safety~=2.1.1
+
+# Security
+bandit~=1.7.2
+
+# Dependencies
+deputil~=0.2.0

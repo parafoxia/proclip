@@ -110,7 +110,7 @@ setuptools.setup(
         "CI": attrs["ci"],
         "Changelog": attrs["changelog"],
     },
-    # install_requires=parse_requirements("./requirements/base.txt"),
+    install_requires=parse_requirements("./requirements/base.txt"),
     # extras_require={},
     python_requires=">=3.7.0,<3.12",
     packages=setuptools.find_packages(),
