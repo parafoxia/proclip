@@ -75,9 +75,9 @@ setuptools.setup(
     author_email=attrs["author_email"],
     license=attrs["license"],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        # "Development Status :: 1 - Planning",
         # "Development Status :: 2 - Pre-Alpha",
-        # "Development Status :: 3 - Alpha",
+        "Development Status :: 3 - Alpha",
         # "Development Status :: 4 - Beta",
         # "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
@@ -115,5 +115,5 @@ setuptools.setup(
     python_requires=">=3.7.0,<3.12",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    entry_points={"console_scripts": ["clip = len8.cli:len8"]},
+    entry_points={"console_scripts": ["clip = proclip.cli.clip:clip"]},
 )

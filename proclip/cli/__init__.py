@@ -4,7 +4,7 @@
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #
-# 1. Redistributions of source pro must retain the above copyright notice, this
+# 1. Redistributions of source code must retain the above copyright notice, this
 #    list of conditions and the following disclaimer.
 #
 # 2. Redistributions in binary form must reproduce the above copyright notice,
@@ -26,18 +26,6 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-__all__ = ("cli", "types")
+__all__ = ("clip", "clip_cmds")
 
-__productname__ = "proclip"
-__version__ = "0.1.0"
-__description__ = "A powerful templating tool for your projects."
-__url__ = "https://github.com/parafoxia/proclip"
-__docs__ = "https://proclip.readthedocs.io"
-__author__ = "Ethan Henderson"
-__author_email__ = "ethan.henderson.1998@gmail.com"
-__license__ = "BSD 3-Clause 'New' or 'Revised' License"
-__bugtracker__ = "https://github.com/parafoxia/proclip/issues"
-__ci__ = "https://github.com/parafoxia/proclip/actions"
-__changelog__ = "https://github.com/parafoxia/proclip/releases"
-
-from . import cli, types
+from . import clip, clip_cmds
