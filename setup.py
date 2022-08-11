@@ -115,5 +115,5 @@ setuptools.setup(
     python_requires=">=3.7.0,<3.12",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    entry_points={"console_scripts": ["clip = proclip.cli.clip:clip"]},
+    entry_points={"console_scripts": ["clip = proclip.cli:cmd_clip"]},
 )

@@ -26,6 +26,39 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-__all__ = ("cmd_clip",)
+from __future__ import annotations
 
-from .clip import cmd_clip
+from pathlib import Path
+
+import click
+
+from proclip import CONFIG_DIR, ux
+from proclip.api import Clip
+from proclip.cli.clip import cmd_clip
+
+
+@cmd_clip.command(name="new", help="Create a new clip called NAME from file FILE.")
+@click.argument("name")
+@click.argument("file", type=Path)
+@click.option(
+    "-o",
+    "--output-dir",
+    type=Path,
+    help=(
+        "The directory this clip should be saved to. If this is not provided, the clip "
+        f"will be saved to '{CONFIG_DIR}'."
+    ),
+)
+def cmd_clip_new(name: str, file: Path, output_dir: Path | None) -> None:
+    try:
+        clip = Clip(name, file.read_bytes(), file.suffix)
+
+        if not output_dir:
+            CONFIG_DIR.mkdir(exist_ok=True)
+            output_dir = CONFIG_DIR
+
+        clip.write(to_dir=output_dir)
+        ux.cprint("aok", "Success!")
+
+    except Exception as exc:
+        ux.cprint("err", f"{exc}")

@@ -26,6 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-__all__ = ("cmd_clip",)
+__all__ = ("cmd_clip", "cmd_clip_new", "cmd_clip_paste")
 
 from .clip import cmd_clip
+from .new import cmd_clip_new
+from .paste import cmd_clip_paste

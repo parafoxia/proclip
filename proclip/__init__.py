@@ -26,7 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-__all__ = ("cli", "types")
+__all__ = ("cli", "types", "ux", "CONFIG_DIR")
 
 __productname__ = "proclip"
 __version__ = "0.1.0"
@@ -40,4 +40,10 @@ __bugtracker__ = "https://github.com/parafoxia/proclip/issues"
 __ci__ = "https://github.com/parafoxia/proclip/actions"
 __changelog__ = "https://github.com/parafoxia/proclip/releases"
 
-from . import cli, types
+import os
+from pathlib import Path
+
+CONFIG_DIR = Path.home() / (f".proclip" if os.name == "nt" else f".config/proclip")
+
+from . import cli, types, ux
+from .errors import *

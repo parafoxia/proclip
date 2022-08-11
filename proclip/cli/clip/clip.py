@@ -26,6 +26,12 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-__all__ = ("cmd_clip",)
+from __future__ import annotations
 
-from .clip import cmd_clip
+import click
+
+
+@click.group(name="clip")
+@click.version_option()
+def cmd_clip() -> None:
+    ...

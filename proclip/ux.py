@@ -4,7 +4,7 @@
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #
-# 1. Redistributions of source code must retain the above copyright notice, this
+# 1. Redistributions of source pro must retain the above copyright notice, this
 #    list of conditions and the following disclaimer.
 #
 # 2. Redistributions in binary form must reproduce the above copyright notice,
@@ -28,10 +28,17 @@
 
 from __future__ import annotations
 
-import click
+import typing as t
+
+_MESSAGE_TYPES = {
+    "aok": ("🎉", "\33[92m"),
+    "war": ("💣", "\33[93m"),
+    "err": ("💥", "\33[91m"),
+    "prc": ("⌛", ""),
+    "inf": ("📢", "\33[94m"),
+}
 
 
-@click.group()
-@click.version_option()
-def clip() -> None:
-    ...
+def cprint(type: str, text: str, **kwargs: t.Any) -> None:
+    emoji, colour = _MESSAGE_TYPES[type]
+    print(f"{emoji} \33[1m{colour}{text}\33[0m", **kwargs)
