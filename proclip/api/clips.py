@@ -1,4 +1,4 @@
-# Copyright (c) 2021-present, Ethan Henderson
+# Copyright (c) 2022-present, Ethan Henderson
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -82,7 +82,11 @@ class Clip:
             match = _VAR_PATTERN.search(content)
             if not match:
                 break
-            content = f"{content[:match.start()]}{vars[match.group(1)]}{content[match.end():]}"
+            content = (
+                f"{content[:match.start()]}"
+                f"{vars[match.group(1)]}"
+                f"{content[match.end():]}"
+            )
 
         return content.encode("utf-8")
 
