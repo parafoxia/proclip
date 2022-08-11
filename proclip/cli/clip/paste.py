@@ -37,9 +37,6 @@ from proclip import CONFIG_DIR, ux
 from proclip.api import Clip
 from proclip.cli.clip import cmd_clip
 
-if t.TYPE_CHECKING:
-    from proclip.types import PathLikeT
-
 
 @cmd_clip.command(name="paste", help="Paste a clip of name NAME to a file.")
 @click.argument("name")
