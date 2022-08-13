@@ -28,7 +28,6 @@
 
 from __future__ import annotations
 
-import typing as t
 from pathlib import Path
 
 import click
@@ -65,8 +64,17 @@ from proclip.cli.clip import cmd_clip
     "--variables",
     help="The variables to pass to the clip.",
 )
+@click.option(
+    "--overwrite",
+    is_flag=True,
+    help="Whether to overwrite an existing file on conflict.",
+)
 def cmd_clip_paste(
-    name: str, input_dir: Path | None, output: Path | None, variables: str | None
+    name: str,
+    input_dir: Path | None,
+    output: Path | None,
+    variables: str | None,
+    overwrite: bool,
 ) -> None:
     try:
         if not input_dir:
@@ -80,6 +88,9 @@ def cmd_clip_paste(
 
         if output.is_dir():
             output /= f"{name}{clip.suffix}"
+
+        if output.exists() and not overwrite:
+            raise FileExistsError("A file with that name already exists.")
 
         clip.paste(variables, to_file=output)
         ux.cprint("aok", "Success!")

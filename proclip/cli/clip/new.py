@@ -49,7 +49,14 @@ from proclip.cli.clip import cmd_clip
         f"will be saved to '{CONFIG_DIR}'."
     ),
 )
-def cmd_clip_new(name: str, file: Path, output_dir: Path | None) -> None:
+@click.option(
+    "--overwrite",
+    is_flag=True,
+    help="Whether to overwrite an existing clip on conflict.",
+)
+def cmd_clip_new(
+    name: str, file: Path, output_dir: Path | None, overwrite: bool
+) -> None:
     try:
         clip = Clip(name, file.read_bytes(), file.suffix)
 
@@ -57,7 +64,12 @@ def cmd_clip_new(name: str, file: Path, output_dir: Path | None) -> None:
             CONFIG_DIR.mkdir(exist_ok=True)
             output_dir = CONFIG_DIR
 
-        clip.write(to_dir=output_dir)
+        file = output_dir / f"{name}.clip"
+
+        if file.exists() and not overwrite:
+            raise FileExistsError("A clip with that name already exists.")
+
+        clip.write(to_file=file)
         ux.cprint("aok", "Success!")
 
     except Exception as exc:
