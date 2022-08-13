@@ -35,6 +35,8 @@ import typing as t
 from dataclasses import dataclass
 from pathlib import Path
 
+from proclip.errors import UnsupportedFile
+
 if t.TYPE_CHECKING:
     from proclip.types import PathLikeT
 
@@ -57,7 +59,9 @@ class Clip:
         self._name = name
         self._content = content
         self._suffix = suffix
-        self._variables = variables if variables else self._find_variables(self._content)
+        self._variables = (
+            variables if variables else self._find_variables(self._content)
+        )
 
     @property
     def name(self) -> str:
@@ -113,7 +117,7 @@ class Clip:
 
         with open(from_dir / f"{name}.clip", "rb") as f:
             if f.read(2) != _SPEC_ID:
-                raise ValueError("cannot read file as clip")
+                raise UnsupportedFile("The provided file is not a valid clip file.")
 
             # Skip over headers.
             f.read(4)
@@ -169,7 +173,7 @@ class Clip:
             vars.update(self._parse_variables(variables))
 
         if not all(v for v in vars.values()):
-            raise ValueError("Some variables do not have values")
+            raise ValueError("Some variables do not have values.")
 
         with open(to_file, "wb") as f:
             f.write(self._transform_content(vars))
