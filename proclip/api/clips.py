@@ -116,16 +116,11 @@ class Clip:
 
         return cls(name, content, suffix, variables=vars)
 
-    def write(self, *, to_dir: PathLikeT) -> Path:
-        if not isinstance(to_dir, Path):
-            to_dir = Path(to_dir)
+    def write(self, *, to_file: PathLikeT) -> Path:
+        if not isinstance(to_file, Path):
+            to_file = Path(to_file)
 
-        file = to_dir / f"{self.name}.clip"
-
-        # if file.exists():
-        #     raise FileExistsError("file exists")
-
-        with open(file, "wb") as f:
+        with open(to_file, "wb") as f:
             # Identification.
             f.write(_SPEC_ID)
 
@@ -144,9 +139,9 @@ class Clip:
             h = self._header_for(var_list, 8)
             f.write(f"{h}{var_list}".encode())
 
-        return file
+        return to_file
 
-    def paste(self, variables: str | None, *, to_file: PathLikeT) -> None:
+    def paste(self, variables: str | None, *, to_file: PathLikeT) -> Path:
         if not isinstance(to_file, Path):
             to_file = Path(to_file)
 
@@ -159,3 +154,5 @@ class Clip:
 
         with open(to_file, "wb") as f:
             f.write(self._transform_content(vars))
+
+        return to_file

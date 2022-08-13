@@ -29,7 +29,7 @@
 __all__ = ("cli", "types", "ux", "CONFIG_DIR")
 
 __productname__ = "proclip"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __description__ = "A powerful templating tool for your projects."
 __url__ = "https://github.com/parafoxia/proclip"
 __docs__ = "https://proclip.readthedocs.io"
