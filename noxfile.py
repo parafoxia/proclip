@@ -28,7 +28,9 @@
 
 from __future__ import annotations
 
+import os
 import re
+import shutil
 from pathlib import Path
 
 import nox
@@ -69,21 +71,25 @@ def fetch_installs(*categories: str) -> list[str]:
     return installs
 
 
-# @nox.session(reuse_venv=True)
-# def tests(session: nox.Session) -> None:
-#     session.install(*fetch_installs("Tests"), ".")
-#     session.run(
-#         "coverage",
-#         "run",
-#         "--source",
-#         PROJECT_NAME,
-#         "--omit",
-#         "tests/*",
-#         "-m",
-#         "pytest",
-#         "--log-level=1",
-#     )
-#     session.run("coverage", "report", "-m")
+@nox.session(reuse_venv=True)
+def tests(session: nox.Session) -> None:
+    session.install(*fetch_installs("Tests"), ".")
+    try:
+        os.makedirs("tests/temp", exist_ok=True)
+        session.run(
+            "coverage",
+            "run",
+            "--source",
+            PROJECT_NAME,
+            "--omit",
+            "tests/*",
+            "-m",
+            "pytest",
+            "--log-level=1",
+        )
+        session.run("coverage", "report", "-m")
+    finally:
+        shutil.rmtree("tests/temp")
 
 
 @nox.session(reuse_venv=True)

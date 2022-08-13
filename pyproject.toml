@@ -7,6 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 88
+extend-exclude = "tests/mock*"
 
 [tool.isort]
 profile = "black"
@@ -15,9 +16,6 @@ profile = "black"
 strict = true
 ignore_missing_imports = true
 exclude = "tests"
-
-[tool.pytest.ini_options]
-asyncio_mode = "auto"
 
 [tool.len8]
 exclude = ["tests", "proclip/ux.py"]
