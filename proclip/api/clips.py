@@ -126,9 +126,9 @@ class Clip:
             size = int(f.read(2).decode("utf-8"), base=16)
             suffix = f.read(size).decode("utf-8")
 
-            # Read content.
+            # Read content (and convert to work on Windows).
             size = int(f.read(8).decode("utf-8"), base=16)
-            content = f.read(size)
+            content = f.read(size).replace(b"\r\n", b"\n")
 
             # Read and parse variables.
             size = int(f.read(8).decode("utf-8"), base=16)
