@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 88
-extend-exclude = "tests/mock*"
+extend-exclude = "tests/data/"
 
 [tool.isort]
 profile = "black"

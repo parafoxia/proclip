@@ -35,7 +35,7 @@ import pytest
 from proclip.api import Clip
 from proclip.errors import UnsupportedFile
 
-READ_DIR = Path(__file__).parent
+READ_DIR = Path(__file__).parent / "data"
 WRITE_DIR = READ_DIR / "temp"
 
 
