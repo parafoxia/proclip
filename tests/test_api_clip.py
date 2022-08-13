@@ -94,7 +94,7 @@ def test_transform_content(clip: Clip) -> None:
 def test_read_from_file(clip: Clip) -> None:
     clip2 = Clip.read("mock_clip", from_dir=READ_DIR)
     assert clip.name == clip2.name
-    assert clip.content == clip2.content
+    assert clip.content.strip() == clip2.content.strip()
     assert clip.suffix == clip2.suffix
     assert clip.variables == clip2.variables
 
@@ -102,7 +102,7 @@ def test_read_from_file(clip: Clip) -> None:
 def test_read_from_str_file(clip: Clip) -> None:
     clip2 = Clip.read("mock_clip", from_dir=str(READ_DIR))
     assert clip.name == clip2.name
-    assert clip.content == clip2.content
+    assert clip.content.strip() == clip2.content.strip()
     assert clip.suffix == clip2.suffix
     assert clip.variables == clip2.variables
 
