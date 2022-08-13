@@ -39,7 +39,7 @@ if t.TYPE_CHECKING:
     from proclip.types import PathLikeT
 
 _SPEC_ID = b"\x99\x69"
-_VAR_PATTERN = re.compile(r"{{ *([A-Za-z0-9_]+) * =? *([A-Za-z0-9_]*)? *}}")
+_VAR_PATTERN = re.compile(r"{{ *([A-Za-z0-9_]+) *=? *([A-Za-z0-9_]*)? *}}")
 
 
 @dataclass(init=False)
