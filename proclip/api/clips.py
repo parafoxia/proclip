@@ -112,7 +112,10 @@ class Clip:
 
             # Read and parse variables.
             size = int(f.read(8).decode("utf-8"), base=16)
-            vars = cls._parse_variables(f.read(size).decode("utf-8"))
+            if size:
+                vars = cls._parse_variables(f.read(size).decode("utf-8"))
+            else:
+                vars = {}
 
         return cls(name, content, suffix, variables=vars)
 
