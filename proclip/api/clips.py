@@ -44,7 +44,7 @@ _VAR_PATTERN = re.compile(r"{{ *([A-Za-z0-9_]+) * =? *([A-Za-z0-9_]*)? *}}")
 
 @dataclass(init=False)
 class Clip:
-    __slots__ = ("name", "content", "suffix", "variables")
+    __slots__ = ("_name", "_content", "_suffix", "_variables")
 
     def __init__(
         self,
@@ -54,10 +54,26 @@ class Clip:
         *,
         variables: dict[str, str] | None = None,
     ) -> None:
-        self.name = name
-        self.content = content
-        self.suffix = suffix
-        self.variables = variables if variables else self._find_variables(self.content)
+        self._name = name
+        self._content = content
+        self._suffix = suffix
+        self._variables = variables if variables else self._find_variables(self._content)
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def content(self) -> bytes:
+        return self._content
+
+    @property
+    def suffix(self) -> str:
+        return self._suffix
+
+    @property
+    def variables(self) -> dict[str, str]:
+        return self._variables
 
     @staticmethod
     def _header_for(x: str | bytes, n: int) -> str:
