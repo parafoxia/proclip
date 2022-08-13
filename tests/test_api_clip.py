@@ -28,7 +28,6 @@
 
 from __future__ import annotations
 
-import tempfile
 from pathlib import Path
 
 import pytest
@@ -36,7 +35,7 @@ import pytest
 from proclip.api import Clip
 from proclip.errors import UnsupportedFile
 
-READ_DIR = Path(__file__).parent.parent
+READ_DIR = Path(__file__).parent
 WRITE_DIR = READ_DIR / "temp"
 
 
